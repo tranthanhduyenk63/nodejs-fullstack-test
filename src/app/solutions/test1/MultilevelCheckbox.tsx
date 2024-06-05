@@ -17,7 +17,10 @@ const MultilevelCheckbox = ({ models, onChange }: MultilevelCheckboxProps) => {
     let node: CheckboxModel | undefined;
     const parents: Array<CheckboxModel> = [];
 
-    const search = (nodes: Array<CheckboxModel>, parentChain: Array<CheckboxModel>) => {
+    const search = (
+      nodes: Array<CheckboxModel>,
+      parentChain: Array<CheckboxModel>
+    ) => {
       for (let n of nodes) {
         if (n.label === label) {
           node = n;
@@ -31,7 +34,7 @@ const MultilevelCheckbox = ({ models, onChange }: MultilevelCheckboxProps) => {
         }
       }
       return false;
-    }
+    };
 
     search(nodes, []);
     return { node, parents };
@@ -39,18 +42,18 @@ const MultilevelCheckbox = ({ models, onChange }: MultilevelCheckboxProps) => {
 
   const updateParentState = (parents: Array<CheckboxModel>) => {
     if (!parents.length) return;
-    const directParent = parents[parents.length - 1];
-    const currentParentState = directParent.checked;
+    const parent = parents[parents.length - 1];
+    const currentParentState = parent.checked;
 
-    const noneChecked = directParent.items?.every((item) => item.checked === 0);
-    const allChecked = directParent.items?.every((item) => item.checked === 1);
+    const noneChecked = parent.items?.every((item) => item.checked === 0);
+    const allChecked = parent.items?.every((item) => item.checked === 1);
 
     let newParentState = -1;
     if (noneChecked) newParentState = 0;
     else if (allChecked) newParentState = 1;
 
     if (currentParentState === newParentState) return;
-    directParent.checked = newParentState;
+    parent.checked = newParentState;
     updateParentState(parents.splice(0, parents.length - 1));
   };
 
@@ -88,9 +91,7 @@ const MultilevelCheckbox = ({ models, onChange }: MultilevelCheckboxProps) => {
             <div key={item.label}>
               <CustomCheckbox item={item} onClick={handleClickItem} />
               {item.items && (
-                <div className="pl-4">
-                  {renderCheckboxTree(item.items)}
-                </div>
+                <div className="pl-4">{renderCheckboxTree(item.items)}</div>
               )}
             </div>
           );

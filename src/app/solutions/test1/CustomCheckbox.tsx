@@ -11,10 +11,10 @@ const CustomCheckbox = ({ item, onClick }: CustomCheckboxProps) => {
     <>
       <input
         type="checkbox"
-        value={item.label}
-        id={item.label}
-        checked={item.checked === 1}
         onChange={onClick}
+        id={item.label}
+        value={item.label}
+        checked={item.checked === 1}
         ref={(input) => {
           if (input) input.indeterminate = item.checked === -1;
         }}
