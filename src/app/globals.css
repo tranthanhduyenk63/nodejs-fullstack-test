@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: 100%;
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  background-color: #ffffff;
+  background: #ffefff;
+}
+
+body {
+  min-height: 100%;
+}
+
+.custom-checkbox {
+  accent-color: green;
+}
