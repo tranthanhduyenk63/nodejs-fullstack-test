@@ -15,7 +15,7 @@ const Solution5 = () => {
   return (
     <div>
       <Image
-        src="/solution5.png"
+        src="/solution5-2.png"
         alt="solution-5"
         width={500}
         height={700}
